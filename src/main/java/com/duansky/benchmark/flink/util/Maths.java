@@ -10,7 +10,10 @@ import java.util.*;
 public class Maths {
 
     private static Random random = new Random();
-    private static double threshold = 0.01;
+    private static double threshold = 0.02;
+
+    private static Map<Integer,List<List<Integer>>> combinationsCache = new HashMap<>();
+    private static Map<Integer,Long> combinationNumCache = new HashMap<>();
 
     /**
      * get the number of combinations(n,k)
@@ -19,14 +22,21 @@ public class Maths {
      * @return the result of c(n,k)
      */
     public static long getCombinationsNumber(int n, int k){
-        long res = 1;
-        for(int i = 0;i < k; i++){
-            res *= (n-i);
+        int hashCode = Arrays.hashCode(new int[]{n,k});
+        if(combinationNumCache.containsKey(hashCode))
+            return combinationNumCache.get(hashCode);
+        else{
+            long res = 1;
+            for(int i = 0;i < k; i++){
+                res *= (n-i);
+            }
+            for(int i = 1; i <=k; i++){
+                res /= i;
+            }
+            combinationNumCache.put(hashCode,res);
+            return res;
         }
-        for(int i = 1; i <=k; i++){
-            res /= i;
-        }
-        return res;
+
     }
 
     /**
@@ -36,9 +46,15 @@ public class Maths {
      * @return all the combinations of n,k.
      */
     public static List<List<Integer>> getCombinations(int n, int k){
-        List<List<Integer>> res = new ArrayList<List<Integer>>((int) getCombinationsNumber(n,k));
-        getCombinations(n,k,new ArrayList<Integer>(k),res);
-        return res;
+        int hashCode = Arrays.hashCode(new int[]{n,k});
+        if(combinationsCache.containsKey(hashCode)) return combinationsCache.get(hashCode);
+        else{
+            List<List<Integer>> res = new ArrayList<List<Integer>>((int) getCombinationsNumber(n,k));
+            getCombinations(n,k,new ArrayList<Integer>(k),res);
+            combinationsCache.put(hashCode,res);
+            return res;
+        }
+
     }
     private static void getCombinations(int n,int k,List<Integer> curr,List<List<Integer>> res){
         if(curr == null || curr.size() != k){ //its not finished yet.
@@ -173,26 +189,5 @@ public class Maths {
             }
         }
         return res;
-    }
-
-
-
-    public static void main(String args[]){
-        testIntegerArray();
-        testStringArray();
-        int[] res = getRandom(10,10);
-        int t = 0;
-    }
-
-    public static void testIntegerArray(){
-        Integer[] array = new Integer[]{1,2,3};
-        List list = Arrays.asList(array);
-        System.out.println(list);
-    }
-
-    public static void testStringArray(){
-        String[] array = new String[]{"1","2","3"};
-        List list = Arrays.asList(array);
-        System.out.println(list);
     }
 }
