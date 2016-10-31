@@ -1,5 +1,0 @@
-test for graph(1000,0.1):f6b8d9066701b7bc08c2c8e6b047f6d4=>518
-test for graph(1000,0.2):43658051f0fdc1c06133cb4cf9d9d2d0=>625
-test for graph(1000,0.5):c6759f24c22ce23900a21051044e74d6=>1066
-test for graph(1000,0.8):eef3a655da83351f0bbe508930dd059d=>1886
-Error
