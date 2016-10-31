@@ -10,6 +10,7 @@ import java.util.*;
 public class Maths {
 
     private static Random random = new Random();
+    private static double threshold = 0.01;
 
     /**
      * get the number of combinations(n,k)
@@ -35,15 +36,15 @@ public class Maths {
      * @return all the combinations of n,k.
      */
     public static List<List<Integer>> getCombinations(int n, int k){
-        List<List<Integer>> res = new LinkedList<List<Integer>>();
-        getCombinations(n,k,new LinkedList<Integer>(),res);
+        List<List<Integer>> res = new ArrayList<List<Integer>>((int) getCombinationsNumber(n,k));
+        getCombinations(n,k,new ArrayList<Integer>(k),res);
         return res;
     }
     private static void getCombinations(int n,int k,List<Integer> curr,List<List<Integer>> res){
         if(curr == null || curr.size() != k){ //its not finished yet.
             int size = curr.size();
             //the last element of the curr.
-            if(curr == null) curr = new LinkedList<Integer>();
+            if(curr == null) curr = new ArrayList<Integer>(k);
             int last = curr.size() == 0 ? -1 : curr.get(curr.size()-1);
             for(int i = last + 1; i <= n -(k-size); i++){
                 curr.add(i);
@@ -98,7 +99,7 @@ public class Maths {
      */
     public static int[] getRandom(int n,int m){
         double p = m * 1.0 / n;
-        if(p <= 0.2) return getRandom0(n,m);
+        if(p <= threshold) return getRandom0(n,m);
         else{
             Integer[] total = new Integer[n];
             for(int i = 0; i < n; i++) total[i]=i;
@@ -118,7 +119,7 @@ public class Maths {
      */
     public static int[][] getRandomUndirectedPairs(int n,int m){
         double p = m * 1.0 / Maths.getCombinationsNumber(n,2);
-        if(p <= 0.2)
+        if(p <= threshold)
             return getRandomUndirectedPairs0(n,m);
         else{
             return getRandomCombination(n,2,m);
@@ -154,7 +155,7 @@ public class Maths {
 
     public static int[][] getRandomDirectedPairs(int n,int m){
         double p = 1.0 * m / Maths.getCombinationsNumber(n,2);
-        if(p <= 0.2) return getRandomDirectedPairs0(n,m);
+        if(p <= threshold) return getRandomDirectedPairs0(n,m);
         else return getRandomCombination(n,2,m);
     }
 
