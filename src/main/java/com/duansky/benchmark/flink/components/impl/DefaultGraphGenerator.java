@@ -8,6 +8,7 @@ import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.graph.Edge;
 import org.apache.flink.graph.Graph;
+import org.apache.flink.types.IntValue;
 import org.apache.flink.types.NullValue;
 
 /**
@@ -15,33 +16,14 @@ import org.apache.flink.types.NullValue;
  */
 public class DefaultGraphGenerator implements GraphGenerator{
 
-    private GraphTemplate[] templates;
-
-    public DefaultGraphGenerator(){super();}
-
-    public DefaultGraphGenerator(GraphTemplate... templates){
-        super();
-        this.templates = templates;
-    }
-
-    public boolean setGraphTemplete(GraphTemplate... template) {
-        this.templates = template;
-        return true;
-    }
-
-    public Graph[] generateGraph(ExecutionEnvironment env) {
-        if(templates == null)
+    public Graph generateGraph(ExecutionEnvironment env,GraphTemplate template) {
+        if(template == null)
             throw new IllegalArgumentException("the templete must be inited by using DefaultTemplate first!");
-        Graph[] graphs = new Graph[templates.length]; int i = 0;
-        for (GraphTemplate template : templates) {
-            int n = template.getVertexNumber();
-            double p = template.getProbability();
-            //the random edge.
-            int[][] e = Maths.getRandomUndirectedPairs(n, (int)(Maths.getCombinationsNumber(n,2) * p));
-            DataSet<Edge<Integer,NullValue>> edges = Graphs.transform(env,e);
-            graphs[i++] = Graph.fromDataSet(edges,env);
-        }
-
-        return graphs;
+        int n = template.getVertexNumber();
+        double p = template.getProbability();
+        //the random edge.
+        int[][] e = Maths.getRandomUndirectedPairs(n, (int)(Maths.getCombinationsNumber(n,2) * p));
+        DataSet<Edge<IntValue,NullValue>> edges = Graphs.transform(env,e);
+        return Graph.fromDataSet(edges,env);
     }
 }

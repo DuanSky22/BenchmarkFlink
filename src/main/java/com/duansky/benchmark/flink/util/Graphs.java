@@ -4,6 +4,7 @@ import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.graph.Edge;
 import org.apache.flink.graph.Graph;
+import org.apache.flink.types.IntValue;
 import org.apache.flink.types.NullValue;
 
 import java.util.LinkedList;
@@ -20,10 +21,10 @@ public class Graphs {
      * @param edges the array of edges.
      * @return the dataset of the given edge array.
      */
-    public static DataSet<Edge<Integer,NullValue>> transform(ExecutionEnvironment env,int[][] edges){
-        List<Edge<Integer,NullValue>> list = new LinkedList<Edge<Integer, NullValue>>();
+    public static DataSet<Edge<IntValue,NullValue>> transform(ExecutionEnvironment env, int[][] edges){
+        List<Edge<IntValue,NullValue>> list = new LinkedList<Edge<IntValue, NullValue>>();
         for(int[] edge : edges)
-            list.add(new Edge<Integer, NullValue>(edge[0],edge[1],NullValue.getInstance()));
+            list.add(new Edge<IntValue, NullValue>(new IntValue(edge[0]),new IntValue(edge[1]),NullValue.getInstance()));
         return env.fromCollection(list);
     }
 

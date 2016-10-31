@@ -12,6 +12,5 @@ import java.util.List;
  */
 public interface GraphGenerator {
 
-    boolean setGraphTemplete(GraphTemplate... templete);
-    Graph[] generateGraph(ExecutionEnvironment env);
+    Graph generateGraph(ExecutionEnvironment env,GraphTemplate template);
 }

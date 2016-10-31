@@ -18,10 +18,9 @@ public class DefaultGraphGeneratorTest {
     public void testDefaultGraphGenerator(){
         env.getConfig().disableSysoutLogging();
         GraphTemplate template = new DefaultTemplate(10,0.6);
-        GraphGenerator generator = new DefaultGraphGenerator(template);
-        Graph[] graph = generator.generateGraph(env);
-        Graphs.printGraph(graph[0]);
-        int i = 0;
+        GraphGenerator generator = new DefaultGraphGenerator();
+        Graph graph = generator.generateGraph(env,template);
+        Graphs.printGraph(graph);
     }
 
 }
