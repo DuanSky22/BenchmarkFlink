@@ -1,6 +1,10 @@
 package com.duansky.benchmark.flink.components;
 
 /**
+ * GraphTemplate declares the basic elements of
+ * a graph, in other words, its defined what a
+ * graph looks like.
+ *
  * Created by DuanSky on 2016/10/30.
  */
 public interface GraphTemplate {

@@ -49,7 +49,7 @@ public class DefaultGraphGenerator implements GraphGenerator{
     }
 
     @Override
-    public Graph generateGraph(ExecutionEnvironment env, String path) {
-        return Graph.fromCsvReader(path,env).keyType(IntValue.class);
+    public Graph generateGraph(ExecutionEnvironment env, String edgePath,String vertexPath) {
+        return Graph.fromCsvReader(vertexPath,edgePath,env).keyType(IntValue.class);
     }
 }

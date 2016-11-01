@@ -75,7 +75,7 @@
                     <!-- MainClass in mainfest make a executable jar -->
                     <archive>
                         <manifest>
-                            <mainClass>com.duansky.benchmark.flink.driver.TestTriangleCount</mainClass>
+                            <mainClass>com.duansky.benchmark.flink.driver.DataDriver</mainClass>
                         </manifest>
                     </archive>
 

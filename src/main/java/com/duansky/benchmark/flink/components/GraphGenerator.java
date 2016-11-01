@@ -23,8 +23,9 @@ public interface GraphGenerator {
     /**
      * generate a graph from a csv file.
      * @param env the execution environment.
-     * @param path the csv file path which contains the edges.
+     * @param edgePath the csv file path which contains the edges.
+     * @param vertexPath the csv file path which contains the verties.
      * @return a graph defined by this csv file.
      */
-    Graph generateGraph(ExecutionEnvironment env,String path);
+    Graph generateGraph(ExecutionEnvironment env,String edgePath,String vertexPath);
 }

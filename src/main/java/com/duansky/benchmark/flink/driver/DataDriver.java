@@ -5,13 +5,11 @@ import com.duansky.benchmark.flink.components.GraphWriter;
 import com.duansky.benchmark.flink.components.impl.DefaultGraphWriter;
 import com.duansky.benchmark.flink.util.Contract;
 
-import java.io.File;
-
 /**
  * Write graph data into files.
  * Created by DuanSky on 2016/10/31.
  */
-public class DataWriteDriver {
+public class DataDriver {
 
     private GraphWriter writer = DefaultGraphWriter.getInstance();
 
@@ -37,8 +35,7 @@ public class DataWriteDriver {
 
     private void writeGraphs(GraphTemplate[] templates){
         for(GraphTemplate template : templates){
-            String path = GraphTemplateFactory.createPath(template);
-            writer.writeAsFile(path,template);
+            writer.writeAsFile(Contract.DATA_FOLDER,template);
             System.out.println(String.format("write graph(%s,%s) done.",
                     template.getVertexNumber(),
                     template.getProbability()));
@@ -46,7 +43,7 @@ public class DataWriteDriver {
     }
 
     public static void main(String args[]){
-        DataWriteDriver driver = new DataWriteDriver();
+        DataDriver driver = new DataDriver();
         driver.generateAndWriteGraphs();
     }
 }
