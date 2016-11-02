@@ -11,7 +11,7 @@ import java.io.File;
  * Write graph data into files.
  * Created by DuanSky on 2016/10/31.
  */
-public class DataWriteDriver {
+public class DataDriver {
 
     private GraphWriter writer = DefaultGraphWriter.getInstance();
 
@@ -22,6 +22,12 @@ public class DataWriteDriver {
     public void generateAndWriteGraphs(){
         //get all the templates.
         GraphTemplate[] templates = GraphTemplateFactory.generateTemplates();
+        generateAndWriteGraphs(templates);
+    }
+
+    public void generateAndWriteGraphs(String propertiesPath){
+        //get all the templates.
+        GraphTemplate[] templates = GraphTemplateFactory.generateTemplates(propertiesPath);
         generateAndWriteGraphs(templates);
     }
 
@@ -37,8 +43,7 @@ public class DataWriteDriver {
 
     private void writeGraphs(GraphTemplate[] templates){
         for(GraphTemplate template : templates){
-            String path = GraphTemplateFactory.createPath(template);
-            writer.writeAsFile(path,template);
+            writer.writeAsFile(Contract.DATA_FOLDER,template);
             System.out.println(String.format("write graph(%s,%s) done.",
                     template.getVertexNumber(),
                     template.getProbability()));
@@ -46,7 +51,10 @@ public class DataWriteDriver {
     }
 
     public static void main(String args[]){
-        DataWriteDriver driver = new DataWriteDriver();
-        driver.generateAndWriteGraphs();
+        DataDriver driver = new DataDriver();
+        if(args != null && args.length == 1)
+            driver.generateAndWriteGraphs(System.getProperty("user.dir")+ File.separator+args[0]);
+        else
+            driver.generateAndWriteGraphs();
     }
 }

@@ -17,8 +17,14 @@ public interface Contract {
     int port = 6123;
 
     /**
-     * the folder of the graph csv file.
+     * the folder store the graph csv file.
      */
     String DATA_FOLDER = System.getProperty("user.dir") +
             File.separator + "flink-gelly";
+
+    /**
+     * the file that store the triangle count test result.
+     */
+    String TRIANGLE_COUNT_RESULT = System.getProperty("user.dir")
+            + File.separator + "triangle_count_test.txt";
 }
