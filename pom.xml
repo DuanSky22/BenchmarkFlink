@@ -57,8 +57,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
 
@@ -75,7 +75,7 @@
                     <!-- MainClass in mainfest make a executable jar -->
                     <archive>
                         <manifest>
-                            <mainClass>com.duansky.benchmark.flink.driver.DataDriver</mainClass>
+                            <mainClass>com.duansky.benchmark.flink.driver.TestDriverTriangleCount</mainClass>
                         </manifest>
                     </archive>
 

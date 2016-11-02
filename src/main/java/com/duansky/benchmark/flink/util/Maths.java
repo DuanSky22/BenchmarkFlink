@@ -12,8 +12,8 @@ public class Maths {
     private static Random random = new Random();
     private static double threshold = 0.02;
 
-    private static Map<Integer,List<List<Integer>>> combinationsCache = new HashMap<>();
-    private static Map<Integer,Long> combinationNumCache = new HashMap<>();
+    private static Map<Integer,List<List<Integer>>> combinationsCache = new HashMap<Integer,List<List<Integer>>>();
+    private static Map<Integer,Long> combinationNumCache = new HashMap<Integer,Long>();
 
     /**
      * get the number of combinations(n,k)

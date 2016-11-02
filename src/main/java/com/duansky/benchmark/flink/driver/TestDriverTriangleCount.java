@@ -36,7 +36,9 @@ public class TestDriverTriangleCount {
         PrintWriter writer = Files.asPrintWriter(outputFile);
 
         //generate graph templates.
-        GraphTemplate[] templates = GraphTemplateFactory.generateTemplates();
+        GraphTemplate[] templates = (args != null && args.length == 1) ?
+                GraphTemplateFactory.generateTemplates(args[0]) :
+                GraphTemplateFactory.generateTemplates();
 
         System.out.println("|============testing algorithm================|");
         for(GraphTemplate template : templates){
