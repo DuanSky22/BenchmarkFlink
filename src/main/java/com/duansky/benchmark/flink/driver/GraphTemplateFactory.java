@@ -12,7 +12,7 @@ import java.util.Properties;
  */
 public class GraphTemplateFactory {
 
-    public static int[] VERTEX_NUMBERS = {1000,2000,5000,8000,10000,20000,50000,80000,100000,200000,500000,800000};
+    public static int[] VERTEX_NUMBERS = {1000,2000};
     public static double[] PROBABILITIES = {0.1,0.2,0.5,0.8,1.0};
 
     public static GraphTemplate[] generateTemplates(){

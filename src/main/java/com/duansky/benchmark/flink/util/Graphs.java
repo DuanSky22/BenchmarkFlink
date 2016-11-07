@@ -33,6 +33,8 @@ public class Graphs {
             System.out.println("=================graph======================");
             System.out.println("  number of edges:"+graph.numberOfEdges());
             System.out.println("number of verties:"+graph.numberOfVertices());
+            System.out.println("   vertie degrees:");
+            graph.getDegrees().print();
             System.out.println("       verties id:");
             graph.getVertexIds().print();
         } catch (Exception e) {
