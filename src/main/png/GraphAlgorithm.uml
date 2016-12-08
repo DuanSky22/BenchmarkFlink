@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.apache.flink.graph.GraphAlgorithm</OriginalElement>
+  <nodes>
+    <node x="-186.0" y="-124.0">org.apache.flink.graph.utils.proxy.GraphAlgorithmDelegatingDataSet</node>
+    <node x="62.0" y="-76.0">org.apache.flink.graph.library.GSAConnectedComponents</node>
+    <node x="135.0" y="-28.0">org.apache.flink.graph.library.ConnectedComponents</node>
+    <node x="320.0" y="-28.0">org.apache.flink.graph.library.PageRank</node>
+    <node x="-57.0" y="20.0">org.apache.flink.graph.library.LabelPropagation</node>
+    <node x="338.0" y="-124.0">org.apache.flink.graph.library.TriangleEnumerator</node>
+    <node x="135.5" y="-202.0">org.apache.flink.graph.GraphAlgorithm</node>
+    <node x="83.0" y="-124.0">org.apache.flink.graph.utils.proxy.GraphAlgorithmDelegatingGraph</node>
+    <node x="-186.0" y="-76.0">org.apache.flink.graph.library.GSASingleSourceShortestPaths</node>
+    <node x="268.0" y="-76.0">org.apache.flink.graph.library.SingleSourceShortestPaths</node>
+    <node x="-186.0" y="-28.0">org.apache.flink.graph.library.CommunityDetection</node>
+    <node x="-8.0" y="-28.0">org.apache.flink.graph.library.Summarization</node>
+    <node x="-186.0" y="20.0">org.apache.flink.graph.library.GSAPageRank</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.apache.flink.graph.library.GSAConnectedComponents" target="org.apache.flink.graph.GraphAlgorithm">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="org.apache.flink.graph.utils.proxy.GraphAlgorithmDelegatingDataSet" target="org.apache.flink.graph.GraphAlgorithm">
+      <point x="0.0" y="-14.0" />
+      <point x="-61.5" y="-149.0" />
+      <point x="157.16666666666669" y="-149.0" />
+      <point x="-43.333333333333336" y="14.0" />
+    </edge>
+    <edge source="org.apache.flink.graph.library.CommunityDetection" target="org.apache.flink.graph.GraphAlgorithm">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="org.apache.flink.graph.library.SingleSourceShortestPaths" target="org.apache.flink.graph.GraphAlgorithm">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="org.apache.flink.graph.library.TriangleEnumerator" target="org.apache.flink.graph.GraphAlgorithm">
+      <point x="0.0" y="-14.0" />
+      <point x="417.0" y="-149.0" />
+      <point x="243.83333333333337" y="-149.0" />
+      <point x="43.33333333333334" y="14.0" />
+    </edge>
+    <edge source="org.apache.flink.graph.library.Summarization" target="org.apache.flink.graph.GraphAlgorithm">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="org.apache.flink.graph.library.GSAPageRank" target="org.apache.flink.graph.GraphAlgorithm">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="org.apache.flink.graph.utils.proxy.GraphAlgorithmDelegatingGraph" target="org.apache.flink.graph.GraphAlgorithm">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.apache.flink.graph.library.GSASingleSourceShortestPaths" target="org.apache.flink.graph.GraphAlgorithm">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="org.apache.flink.graph.library.ConnectedComponents" target="org.apache.flink.graph.GraphAlgorithm">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="org.apache.flink.graph.library.PageRank" target="org.apache.flink.graph.GraphAlgorithm">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="org.apache.flink.graph.library.LabelPropagation" target="org.apache.flink.graph.GraphAlgorithm">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="208.5" y="-25.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
