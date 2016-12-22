@@ -42,5 +42,8 @@ public class DefaultTemplate implements GraphTemplate {
         this.vertexNumber = vertexNumber;
     }
 
-
+    @Override
+    public String toString() {
+        return "graph(" + vertexNumber +"," + probability + ')';
+    }
 }

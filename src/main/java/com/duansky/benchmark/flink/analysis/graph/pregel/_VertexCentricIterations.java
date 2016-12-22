@@ -1,5 +1,6 @@
 package com.duansky.benchmark.flink.analysis.graph.pregel;
 
+import com.duansky.benchmark.flink.analysis.util.Graphs;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.graph.Edge;
 import org.apache.flink.graph.Graph;
@@ -27,36 +28,9 @@ public class _VertexCentricIterations {
         testVertexCentricIterations(env);
     }
 
-
-    /**
-     * create a graph.
-     * The graph looks like
-     * 1 —— 2 —— 5
-     * |        |
-     * 3   ——  4    6
-     *
-     * @param env
-     * @return a graph
-     */
-    public static Graph<LongValue,DoubleValue,DoubleValue> createGraph(ExecutionEnvironment env){
-        int vertexCount = 6, edgeCount = 5;
-        List<Vertex<LongValue,DoubleValue>> verties = new ArrayList<Vertex<LongValue, DoubleValue>>(vertexCount);
-        for(long i = 1; i <= vertexCount; i++){
-            verties.add(new Vertex<LongValue,DoubleValue>(new LongValue(i),new DoubleValue(Double.POSITIVE_INFINITY)));
-        }
-        List<Edge<LongValue,DoubleValue>> edges = new ArrayList<Edge<LongValue, DoubleValue>>(edgeCount);
-        edges.add(new Edge<LongValue, DoubleValue>(new LongValue(1l),new LongValue(2l),new DoubleValue(2d)));
-        edges.add(new Edge<LongValue, DoubleValue>(new LongValue(1l),new LongValue(3l),new DoubleValue(3d)));
-        edges.add(new Edge<LongValue, DoubleValue>(new LongValue(2l),new LongValue(5l),new DoubleValue(5d)));
-        edges.add(new Edge<LongValue, DoubleValue>(new LongValue(3l),new LongValue(4l),new DoubleValue(20d)));
-        edges.add(new Edge<LongValue, DoubleValue>(new LongValue(5l),new LongValue(4l),new DoubleValue(4d)));
-
-        return Graph.fromCollection(verties,edges,env);
-    }
-
     public static void testVertexCentricIterations(ExecutionEnvironment env){
         src = 1;                        //define the original vertex.
-        Graph graph = createGraph(env); //define the graph.
+        Graph graph = Graphs.createGraphForIter0(env); //define the graph.
         try {
             graph.runVertexCentricIteration(new SSSPComputeFunction(),new SSPMessageCombiner(),10)
                     .getVertices().print();
@@ -70,15 +44,22 @@ public class _VertexCentricIterations {
         @Override
         public void compute(Vertex<LongValue, DoubleValue> vertex, MessageIterator<DoubleValue> doubleValues) throws Exception {
             /**
-             * vertex :reciving data vertex.
+             * vertex : receiving data vertex.
              * DoubleValues:the values collected for this vertex.
              */
+            //if the current vertex is the source vertex, the min distance is zero, other init it with positive infinity.
             Double minDistance = vertex.getId().getValue() == src ? 0d : Double.POSITIVE_INFINITY;
+
+            //combine all receiving message that choose the min distance.
             for(DoubleValue message : doubleValues){
                 minDistance = Math.min(message.getValue(),minDistance);
             }
+
+            //if the min distance is smaller than its original value
             if(minDistance < vertex.getValue().getValue()){
+                //set this min distance to its current value.
                 setNewVertexValue(new DoubleValue(minDistance));
+                //and send message to its neighborhood.
                 for(Edge<LongValue,DoubleValue> e : getEdges()){
                     sendMessageTo(e.getTarget(),new DoubleValue(minDistance + e.getValue().getValue()));
                 }

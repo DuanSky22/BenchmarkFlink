@@ -12,8 +12,8 @@ import java.util.Properties;
  */
 public class GraphTemplateFactory {
 
-    public static int[] VERTEX_NUMBERS = {1000,2000};
-    public static double[] PROBABILITIES = {0.1,0.2,0.5,0.8,1.0};
+    public static int[] VERTEX_NUMBERS = {100000};
+    public static double[] PROBABILITIES = {0.2};
 
     public static GraphTemplate[] generateTemplates(){
         int vn = VERTEX_NUMBERS.length, pn = PROBABILITIES.length, total = vn * pn;
