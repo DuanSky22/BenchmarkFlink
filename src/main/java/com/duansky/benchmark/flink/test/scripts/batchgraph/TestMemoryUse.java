@@ -1,16 +1,16 @@
-package com.duansky.benchmark.flink.test.scripts;
+package com.duansky.benchmark.flink.test.scripts.batchgraph;
 
 import com.duansky.benchmark.flink.test.components.GraphTemplate;
+import com.duansky.benchmark.flink.test.scripts.AbstractScript;
 import com.duansky.benchmark.flink.test.util.Contract;
 import org.apache.flink.graph.Graph;
 
 import java.io.File;
-import java.io.PrintWriter;
 
 /**
  * Created by DuanSky on 2016/12/21.
  */
-public class TestMemoryUse extends AbstractScript{
+public class TestMemoryUse extends AbstractScript {
 
     public static String resPath = Contract.BASE_FOLD + File.separator + "test-memory-use.txt";
 
@@ -38,11 +38,10 @@ public class TestMemoryUse extends AbstractScript{
 
     @Override
     protected String runInternal(GraphTemplate template) throws Exception{
-        System.out.println(template);
         Graph graph = graphGenerator.generateGraph(env,
                 transformer.getEdgePath(Contract.DATA_FOLDER_GELLY,template),
                 transformer.getVertexPath(Contract.DATA_FOLDER_GELLY,template));
-        return template + "=> the edge size is " + graph.numberOfEdges();
+        return template + " => the edge size is " + graph.numberOfEdges();
     }
 
 }

@@ -1,6 +1,7 @@
-package com.duansky.benchmark.flink.test.scripts;
+package com.duansky.benchmark.flink.test.scripts.batchgraph;
 
 import com.duansky.benchmark.flink.test.components.GraphTemplate;
+import com.duansky.benchmark.flink.test.scripts.AbstractScript;
 import com.duansky.benchmark.flink.test.util.Contract;
 import org.apache.flink.api.common.JobExecutionResult;
 import org.apache.flink.graph.Graph;
@@ -46,7 +47,7 @@ public class TestTriangleCount extends AbstractScript {
             JobExecutionResult result = env.getLastJobExecutionResult();
             String jobId = result.getJobID().toString();
 
-            return String.format("test for graph(%s,%s) : %s : %s : %s\n",
+            return String.format("test for graph(%s,%s)\t%s\t%s\t%s\n",
                     template.getVertexNumber(),
                     template.getProbability(),
                     jobId,
@@ -56,7 +57,7 @@ public class TestTriangleCount extends AbstractScript {
         } catch (Exception e) {
             e.printStackTrace();
 
-            return String.format("test for graph(%s,%s):%s\n",
+            return String.format("test for graph(%s,%s)\t%s\n",
                     template.getVertexNumber(),
                     template.getProbability(),
                     "Error!");

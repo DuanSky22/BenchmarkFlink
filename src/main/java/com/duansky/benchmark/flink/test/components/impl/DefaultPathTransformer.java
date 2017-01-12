@@ -26,7 +26,7 @@ public class DefaultPathTransformer implements PathTransformer {
 
     @Override
     public String getEdgePath(String folder, GraphTemplate template) {
-        return getPath(folder,template)+"-edges.txt.txt";
+        return getPath(folder,template)+"-edges.txt";
     }
 
     private String getPath(String folder,GraphTemplate template){
