@@ -1,6 +1,7 @@
 package com.duansky.benchmark.flink.test.scripts;
 
 import com.duansky.benchmark.flink.test.components.GraphTemplate;
+import com.duansky.benchmark.flink.test.components.impl.DefaultTemplate;
 import com.duansky.benchmark.flink.test.util.Contract;
 import org.apache.flink.api.common.JobExecutionResult;
 import org.apache.flink.graph.Graph;
@@ -19,6 +20,12 @@ public class TestTriangleCount extends AbstractScript {
 
     public TestTriangleCount() {
         super();
+        setResPath(resPath);
+        setScriptName(name);
+    }
+
+    public TestTriangleCount(GraphTemplate template){
+        super(new GraphTemplate[]{template});
         setResPath(resPath);
         setScriptName(name);
     }
@@ -46,7 +53,7 @@ public class TestTriangleCount extends AbstractScript {
             JobExecutionResult result = env.getLastJobExecutionResult();
             String jobId = result.getJobID().toString();
 
-            return String.format("test for graph(%s,%s) : %s : %s : %s\n",
+            return String.format("test for graph(%s,%s)\t%s\t%s\t%s\n",
                     template.getVertexNumber(),
                     template.getProbability(),
                     jobId,
@@ -56,7 +63,7 @@ public class TestTriangleCount extends AbstractScript {
         } catch (Exception e) {
             e.printStackTrace();
 
-            return String.format("test for graph(%s,%s):%s\n",
+            return String.format("test for graph(%s,%s)\t%s\n",
                     template.getVertexNumber(),
                     template.getProbability(),
                     "Error!");
@@ -64,9 +71,11 @@ public class TestTriangleCount extends AbstractScript {
     }
 
     public static void main(String args[]) throws Exception{
-        TestTriangleCount test = args != null && args.length == 1 ?
-                new TestTriangleCount(args[0]) :
-                new TestTriangleCount();
+        TestTriangleCount test;
+        if(args == null || args.length == 0) test = new TestTriangleCount();
+        else if(args.length == 1) test = new TestTriangleCount(args[0]);
+        else if(args.length == 2) test = new TestTriangleCount(new DefaultTemplate(Integer.parseInt(args[0]),Double.parseDouble(args[1])));
+        else throw new IllegalArgumentException("Invalid Parameter");
         test.run();
     }
 }

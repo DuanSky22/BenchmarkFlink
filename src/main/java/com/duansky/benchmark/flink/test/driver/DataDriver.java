@@ -3,6 +3,7 @@ package com.duansky.benchmark.flink.test.driver;
 import com.duansky.benchmark.flink.test.components.GraphTemplate;
 import com.duansky.benchmark.flink.test.components.GraphWriter;
 import com.duansky.benchmark.flink.test.components.impl.DefaultGraphWriter;
+import com.duansky.benchmark.flink.test.components.impl.DefaultTemplate;
 import com.duansky.benchmark.flink.test.util.Contract;
 
 import java.io.File;
@@ -31,6 +32,11 @@ public class DataDriver {
         generateAndWriteGraphs(templates);
     }
 
+    public void generateAndWriteGraphs(GraphTemplate template){
+        GraphTemplate[] templates = new GraphTemplate[]{template};
+        generateAndWriteGraphs(templates);
+    }
+
     /**
      * generate graphs use {@link GraphTemplate}s you input and write them into
      * files.
@@ -52,9 +58,9 @@ public class DataDriver {
 
     public static void main(String args[]){
         DataDriver driver = new DataDriver();
-        if(args != null && args.length == 1)
-            driver.generateAndWriteGraphs(System.getProperty("user.dir")+ File.separator+args[0]);
-        else
-            driver.generateAndWriteGraphs();
+        if(args == null || args.length == 0) driver.generateAndWriteGraphs();
+        else if(args.length == 1) driver.generateAndWriteGraphs(System.getProperty("user.dir")+ File.separator+args[0]);
+        else if(args.length == 2) driver.generateAndWriteGraphs(new DefaultTemplate(Integer.parseInt(args[0]),Double.parseDouble(args[1])));
+        else throw new IllegalArgumentException("Invalid Parameters!");
     }
 }

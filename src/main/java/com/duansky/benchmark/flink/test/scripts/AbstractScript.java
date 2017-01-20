@@ -8,8 +8,10 @@ import com.duansky.benchmark.flink.test.components.impl.DefaultPathTransformer;
 import com.duansky.benchmark.flink.test.driver.GraphTemplateFactory;
 import com.duansky.benchmark.flink.test.util.Contract;
 import org.apache.flink.api.java.ExecutionEnvironment;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 /**
@@ -21,6 +23,7 @@ public abstract class AbstractScript implements Script{
     public static final GraphGenerator graphGenerator = DefaultGraphGenerator.getInstance();
     public static final PathTransformer transformer = DefaultPathTransformer.getInstance();
 
+
     /**environment**/
     public static final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
@@ -31,10 +34,12 @@ public abstract class AbstractScript implements Script{
     /** input data **/
     protected final GraphTemplate[] templates;
 
-    /** output result **/
-    protected String resPath = Contract.BASE_FOLD + File.separator + "abstract-script-result";
-
     protected String scriptName = "abstract script";
+
+    /** output result **/
+    protected String resPath = Contract.BASE_FOLD + File.separator + scriptName;
+    PrintWriter writer;
+
 
     public AbstractScript(){
         this.templates = GraphTemplateFactory.generateTemplates();
@@ -51,9 +56,18 @@ public abstract class AbstractScript implements Script{
 
     @Override
     public void run() throws Exception{
-        System.out.println("Start test["+ getScriptName()+"]...");
-        for(GraphTemplate template : templates)
-            writeResult(runInternal(template));
+        System.out.println("Start[ "+ getScriptName()+" ]...");
+        String res;
+        for(GraphTemplate template : templates) {
+            res = runInternal(template);
+            if(res != null){
+                System.out.println(res);
+                writeResult(res);
+            }else{
+                System.out.println("the result is null");
+            }
+
+        }
     }
 
     public String getScriptName() {
@@ -62,6 +76,7 @@ public abstract class AbstractScript implements Script{
 
     public void setScriptName(String scriptName) {
         this.scriptName = scriptName;
+        this.resPath = Contract.BASE_FOLD + File.separator + scriptName + ".txt";
     }
 
     public String getResPath() {
@@ -70,12 +85,17 @@ public abstract class AbstractScript implements Script{
 
     public void setResPath(String resPath) {
         this.resPath = resPath;
+        try {
+            writer = new PrintWriter(resPath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     protected abstract String runInternal(GraphTemplate template) throws Exception;
 
     protected void writeResult(String result) throws Exception{
-        PrintWriter writer = new PrintWriter(resPath);
         writer.write(result);
+        writer.flush();
     }
 }
