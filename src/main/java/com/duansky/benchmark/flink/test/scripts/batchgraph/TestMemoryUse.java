@@ -1,6 +1,7 @@
-package com.duansky.benchmark.flink.test.scripts;
+package com.duansky.benchmark.flink.test.scripts.batchgraph;
 
 import com.duansky.benchmark.flink.test.components.GraphTemplate;
+import com.duansky.benchmark.flink.test.scripts.AbstractScript;
 import com.duansky.benchmark.flink.test.util.Contract;
 import org.apache.flink.graph.Graph;
 

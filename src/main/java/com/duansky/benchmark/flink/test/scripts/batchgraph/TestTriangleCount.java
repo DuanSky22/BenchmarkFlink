@@ -1,7 +1,11 @@
-package com.duansky.benchmark.flink.test.scripts;
+package com.duansky.benchmark.flink.test.scripts.batchgraph;
 
 import com.duansky.benchmark.flink.test.components.GraphTemplate;
+<<<<<<< HEAD:src/main/java/com/duansky/benchmark/flink/test/scripts/TestTriangleCount.java
 import com.duansky.benchmark.flink.test.components.impl.DefaultTemplate;
+=======
+import com.duansky.benchmark.flink.test.scripts.AbstractScript;
+>>>>>>> f5c121b6145faeb1dea33d104d9b3213dfde929c:src/main/java/com/duansky/benchmark/flink/test/scripts/batchgraph/TestTriangleCount.java
 import com.duansky.benchmark.flink.test.util.Contract;
 import org.apache.flink.api.common.JobExecutionResult;
 import org.apache.flink.graph.Graph;
