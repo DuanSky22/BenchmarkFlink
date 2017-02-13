@@ -2,7 +2,6 @@ package com.duansky.benchmark.flink.analysis.util;
 
 import com.duansky.benchmark.flink.test.components.GraphGenerator;
 import com.duansky.benchmark.flink.test.components.impl.DefaultGraphGenerator;
-import com.duansky.benchmark.flink.analysis.graph.library._LocalClusteringCofficient;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.graph.Edge;
 import org.apache.flink.graph.Graph;

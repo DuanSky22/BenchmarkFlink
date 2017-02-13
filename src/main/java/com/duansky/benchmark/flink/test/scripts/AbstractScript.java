@@ -26,11 +26,9 @@ public abstract class AbstractScript implements Script{
 
     /**environment**/
     public static final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
-    public static final StreamExecutionEnvironment senv = StreamExecutionEnvironment.getExecutionEnvironment();
 
     static{
         env.getConfig().disableSysoutLogging();
-        senv.getConfig().disableSysoutLogging();
     }
 
     /** input data **/
@@ -58,11 +56,7 @@ public abstract class AbstractScript implements Script{
 
     @Override
     public void run() throws Exception{
-<<<<<<< HEAD
-        System.out.println("Start[ "+ getScriptName()+" ]...");
-=======
         System.out.println("Start test["+ getScriptName()+"]...");
->>>>>>> f5c121b6145faeb1dea33d104d9b3213dfde929c
         String res;
         for(GraphTemplate template : templates) {
             res = runInternal(template);

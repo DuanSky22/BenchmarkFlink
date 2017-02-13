@@ -1,5 +1,8 @@
 package com.duansky.benchmark.flink.test.scripts;
 
+import com.duansky.benchmark.flink.test.scripts.batchgraph.TestMemoryUse;
+import com.duansky.benchmark.flink.test.scripts.batchgraph.TestTriangleCount;
+
 /**
  * Created by DuanSky on 2017/1/12.
  */

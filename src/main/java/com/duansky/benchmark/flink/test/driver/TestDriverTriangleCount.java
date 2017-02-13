@@ -19,7 +19,10 @@ import java.io.PrintWriter;
 
 /**
  * Created by DuanSky on 2016/10/30.
+ * The test driver is move into package scripts.
  */
+
+@Deprecated
 public class TestDriverTriangleCount {
 
     public static String outputFile = Contract.TRIANGLE_COUNT_RESULT;
